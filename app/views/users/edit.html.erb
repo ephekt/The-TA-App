@@ -1,0 +1,11 @@
+<h1>Edit My Account</h1>
+
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :email %><br />
+  <%= f.text_field :email, :class => 'email', :disabled => true %><br />  
+  <%= render :partial => "form", :object => f %>
+  Default course: <%= collection_select(:user, :course_id, Course.all, :id, :title) %>
+  <br /><br />
+  <%= f.submit "Update" %> or <%= link_to "cancel", account_path %>
+<% end %>

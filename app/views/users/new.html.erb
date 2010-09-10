@@ -1,0 +1,13 @@
+<h1>Register</h1>
+
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :email %><br />
+  <%= f.text_field :email, :class => 'email' %><br />  
+  <%= render :partial => "form", :object => f %>
+  <br />
+  Default <%= f.label :course %><br />
+  <%= collection_select(:user, :course_id, Course.all, :id, :title) %>
+  <br /><br />
+  <%= f.submit "Register" %>
+<% end %>

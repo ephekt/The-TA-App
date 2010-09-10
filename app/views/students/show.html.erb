@@ -1,0 +1,45 @@
+<h2><%=h @student.name %></h2>
+<fieldset>
+  <legend>Details (<%= link_to 'Edit', edit_student_path(@student) %>)</legend>
+  Email: <%=h @student.email %>
+  <br />
+  Group: <b><%= link_to @student.group.name, @student.group %></b>
+  <br />
+  Currently: <b><%= @student.active ? 'active' : 'inactive' %></b>
+</fieldset>
+
+<fieldset>
+  <legend>Notes (<%= link_to 'Create', new_note_path %>)</legend>
+  <% if @notes.size > 0 %>
+    <% @notes.each do |n| %>
+    <%= n.text %>
+    <% end %>
+  <% else %>
+  No Notes
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend>Peer Reviews for <%= select_tag "course_id", options_from_collection_for_select(Course.find(:all), 'id', 'title', @course.id), :onchange => "load_reviews_for_student_by_quarter(#{@student.id},this.value)" %></legend>
+  <fieldset>
+    <legend>Given:</legend>
+  <% @reviews_given.each do |r| %>
+    <div id='review' style='border: 1px solid #333; margin-bottom: 10px; padding: 5px;'>
+      <b><%= r.grade %> for <%= r.student.name %></b> in <%= r.course.title %>
+      <br />
+      <%= r.review %>
+      </div>
+  <% end %>
+  </fieldset>
+  <br /><br />
+  <fieldset>
+  <legend>Received (avg grade: <%= @peer_grade %>):</legend>
+  <% @reviews_received.each do |r| %>
+    <div id='review' style='border: 1px solid #333; margin-bottom: 10px; padding: 5px;'>
+      <b><%= r.grade %> from <%= r.reviewer.name %></b> in <%= r.course.title %>
+      <br />      
+    <%= r.review %>
+    </div>
+  <% end %>
+  </fieldset>  
+</fieldset>

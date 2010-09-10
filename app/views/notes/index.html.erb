@@ -1,0 +1,23 @@
+<fieldset>
+  <legend>Notes (<%= link_to 'add a new note', new_note_path %>)</legend>
+  <table>
+    <tr>
+      <th>Group</th>
+      <th>Student</th>
+      <th>Text</th>
+      <th colspan='3'>Controls</th>
+    </tr>
+
+  <% @notes.each do |note| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= note.group.name unless note.group.nil? %></td>
+      <td><%= note.student.name unless note.student.nil? %></td>    
+      <td><%=h note.text %></td>
+      <td><%= link_to 'Show', note %></td>
+      <td><%= link_to 'Edit', edit_note_path(note) %></td>
+      <td><%= link_to 'Destroy', note, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+
+</fieldset>

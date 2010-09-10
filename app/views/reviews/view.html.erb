@@ -1,0 +1,27 @@
+<fieldset>
+  <legend>Listing reviews for 
+    <%= select_tag "course_id", options_from_collection_for_select(Course.find(:all), 'id', 'title', @course.id), :onchange => "view_state_and_quarter('#{@state}',this.value);" %> 
+    (<%= @reviews.size %>)
+    </legend>
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Student</th>
+      <th>Reviewer</td>
+      <th>Grade</th>
+      <th></th>
+    </tr>
+
+  <% @reviews.each do |review| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= review.aasm_state %></td>
+      <td><%= link_to review.student.name, review.student %></td>
+      <td><%= link_to review.reviewer.name, review.reviewer %></td>    
+      <td><%=h review.grade %></td>    
+      <td><%= review.saved_by_token ? 'By Token' : 'By Admin' %></td>
+      <td><%= link_to 'Show', review %></td>
+      <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</fieldset>

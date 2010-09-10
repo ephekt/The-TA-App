@@ -1,0 +1,16 @@
+<fieldset>
+  <legend>Users (<%= link_to 'New User', new_user_path %>)</legend>
+  <table>
+    <tr>
+      <th>User email</th>
+      <th></th>
+    </tr>
+    <% @users.each do |u| %>
+    <tr class='<%= cycle('even','odd')%>'>
+      <td><%= u.email%></td>
+      <td><%= link_to 'Remove Account', u, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </table>
+</fieldset>
+* Policy: Users have access to all parts of the application. Only users can create new users.

@@ -1,0 +1,11 @@
+<fieldset>
+  <legend>view & modify</legend>
+  <%= link_to 'courses', courses_path %><br />
+  <%= link_to 'users', users_path %>
+</fieldset>
+<fieldset>
+  <legend>account details (<%= link_to 'Edit', edit_account_path %>)</legend>
+  Login: <%=h @user.email %><br />
+  Default Course: <%=h @user.course.title %>
+</fieldset>
+

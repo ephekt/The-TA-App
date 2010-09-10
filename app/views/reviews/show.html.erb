@@ -1,0 +1,30 @@
+<p>
+  <b>Student:</b>
+  <%=h @review.student.name %>
+</p>
+<p>
+  <b>Reviewer:</b>
+  <%=h @review.reviewer.name %>
+</p>
+<p>
+  <b>Review:</b>
+  <%=h @review.review %>
+</p>
+
+<p>
+  <b>Grade:</b>
+  <%=h @review.grade %>
+</p>
+<p>
+  <b>Course:</b>
+  <%= @review.course.title %>
+</p>
+<p>
+  <b>Token Url</b>
+  <%= link_to "/r/up/t/#{@review.token}", "/r/up/t/#{@review.token}" %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>
+<br />
+<%= link_to 'New review', new_review_path %>

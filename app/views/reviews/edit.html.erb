@@ -1,0 +1,31 @@
+<h1>Editing review</h1>
+
+<% form_for(@review) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :course %><br />
+    <%= collection_select(:review, :course_id, Course.all, :id, :title) %>
+  </p>
+  <p>
+    <%= f.label :student %><br />
+    <%= collection_select(:review, :student_id, Student.all, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :reviewer %><br />
+    <%= collection_select(:review, :reviewer_id, Student.all, :id, :name) %>
+  </p> 
+  <p>
+    <%= f.label :review %><br />
+    <%= f.text_area :review %>
+  </p>
+  <p>
+    <%= f.label :grade %><br />
+    <%= f.text_field :grade %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @review %> |
+<%= link_to 'Back', reviews_path %>

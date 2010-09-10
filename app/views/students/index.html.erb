@@ -1,0 +1,40 @@
+<fieldset>
+  <legend>Active Students (<%= link_to 'New student', new_student_path %>)</legend>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Group</th>
+    </tr>
+
+  <% @active_students.each do |student| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= link_to student.name, student %></td>
+      <td><%=h student.email %></td>
+      <td><%=h student.group.name unless student.group.nil? %></td>
+      <td><%= link_to 'Edit', edit_student_path(student) %></td>
+      <td><%= link_to 'Mark Inactive', :controller => 'students', :action => 'toggle_active', :id => student.id %></td>
+    </tr>
+  <% end %>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Inactive Students</legend>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Group</th>
+    </tr>
+
+  <% @inactive_students.each do |student| %>
+    <tr class='<%= cycle('even','odd')%>'>
+      <td><%= link_to student.name, student %></td>
+      <td><%=h student.email %></td>
+      <td><%=h student.group.name unless student.group.nil? %></td>
+      <td><%= link_to 'Edit', edit_student_path(student) %></td>
+      <td><%= link_to 'Mark Active', :controller => 'students', :action => 'toggle_active', :id => student.id %></td>
+    </tr>
+  <% end %>
+  </table>
+</fieldset>

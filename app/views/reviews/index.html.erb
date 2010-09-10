@@ -1,0 +1,45 @@
+<h1>Review Dashboard</h1>
+<span style="font-size:14px;"><%= link_to 'created', '/reviews/view/created/2' %> | <%= link_to 'pending', '/reviews/view/pending/2' %> | <%= link_to 'completed', '/reviews/view/completed/2' %> | <%= link_to 'all', '/reviews/view/all/2' %> | <%= link_to 'add new review', new_review_path %> | <%= link_to 'view text list reviews', :controller => 'reviews', :action => 'list' %></span>
+<br />
+<div style="width: 300px;margin-top:1em;">
+<% Student.currently_active.each do |s| %>
+  <% 
+    need_to_review = s.need_to_review 
+    next if need_to_review[:created].empty? && need_to_review[:uncreated].empty?
+  %>
+  
+    <span style="font-size:16px;">
+      <%= link_to s.name, s %>
+    </span>
+    <br />
+    <div>
+      <b>Needs to review:</b><br />
+    <span style="font-size: 10px; color: #333;">
+      <% s.need_to_review.each do |key, value| %>
+        <% value.each do |peer| %>
+          <% if key == :created %>
+            <%= peer.student.name %> has a pending <%= link_to 'review', peer %>. <%= link_to 'resend email', :controller => 'reviews', :action => 'send_email', :review_id => peer.id %><br />
+            <% end %>
+            <% if key == :uncreated %>
+            <%= peer.name %> (<%= link_to 'request review', :controller => 'reviews', :action => 'dispatch_review_request', :reviewer_id => s.id, :reviewee_id => peer.id, :course_id => @course_id %>)<br />
+          <% end %>
+        <% end %>
+        <% end %>
+    </span>
+    </div>
+<!--removing the needs reviews from for now
+  <div>
+  <b>Needs reviews from:</b><br />
+<span style="font-size: 10px; color: #333;">
+  <% set = s.need_reviews_from %>
+    <% set[:created].each do |r| %>
+        <%= r.reviewer.name %> has a pending review for <%= s.name %>. <%= link_to 'review', r %> <br />
+    <% end %>
+    <% set[:uncreated].each do |student| %>
+        <%= student.name %><br />
+    <% end %>
+</span>
+</div>
+!-->
+<br />
+<% end %>

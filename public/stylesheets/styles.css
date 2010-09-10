@@ -1,0 +1,73 @@
+#body_content {
+  padding-left: 1em;
+  width: 700px;
+  float:left;
+}
+legend {
+  font-size: 14px;
+}
+table {
+  width: 100%;
+}
+table th {
+  text-align: left;
+}
+table .even {
+  background-color: #DCDCDC;
+}
+.new_review td {
+  padding: 4px;
+}
+.new_review {
+  width: 400px;
+}
+.new_review select {
+  font-size: 14px;
+}
+#logo {
+  font-size: 18px;
+  color: #f5f5f5;
+  margin-bottom: 0.5em;
+  border-bottom: 1px dashed #f2f2f2;
+}
+#left_bar {
+  border-right: 5px solid #B9BF04;
+  border-bottom: 5px solid #B9BF04;
+  display:block;
+  width: 200px;
+  height: 100%;
+  float:left;
+  padding: 0.3em;
+  background-color: #0A3443;
+}
+.password, .email {
+  width: 200px;
+}
+
+.note_text_input {
+  width: 400px;
+  height: 250px;
+}
+
+#course_id {
+  font-size: 18px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#nav {
+  list-style-type: none;
+  margin:0;
+  padding:0;  
+}
+#nav a {
+  width: 100%;
+  display: block;
+  color: #BAE0D4;
+  font-size: 16px;
+  text-decoration:none;
+  background-color: #0A3443;
+}
+#nav a:hover {
+  color: #0A3443;
+  background-color: #BAE0D4;  
+}

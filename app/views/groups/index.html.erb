@@ -1,0 +1,40 @@
+<fieldset>
+  <legend>
+    Active Groups (<%= link_to 'add a new group', new_group_path %>)
+  </legend>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+    </tr>
+
+<% @active_groups.each do |group| %>
+  <tr class='<%= cycle('even','odd')%>'>
+    <td><%= link_to group.name, group %></td>
+    <td><%=h group.active_students.size %></td>
+    <td><%= link_to 'Edit', edit_group_path(group) %></td>
+    <td><%= link_to 'Mark Inactive', :controller => 'groups', :action => 'mark_inactive', :id => group.id %></td>
+  </tr>
+<% end %>
+</table>
+</fieldset>
+<fieldset>
+  <legend>
+    Inactive Groups
+  </legend>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+    </tr>
+
+<% @inactive_groups.each do |group| %>
+  <tr class='<%= cycle('even','odd')%>'>
+    <td><%= link_to group.name, group %></td>
+    <td><%=h group.active_students.size %></td>
+    <td><%= link_to 'Edit', edit_group_path(group) %></td>
+    <td><%= link_to 'Mark Active', :controller => 'groups', :action => 'mark_active', :id => group.id %></td>
+  </tr>
+<% end %>
+</table>
+</fieldset>

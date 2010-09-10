@@ -1,0 +1,8 @@
+<% @reviews.each do |review| %>
+  Student:<%= review.student.name %><br />
+  Reviewer:<%= review.reviewer.name %><br />
+  Grade:<%= review.grade %><br />
+  Review:<%= review.review %><br />
+  Course:<%= review.course.title %><br />
+  <br />
+<% end %>

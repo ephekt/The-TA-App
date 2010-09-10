@@ -1,0 +1,12 @@
+<% if @note.student %>
+  Student: <%= @note.student.name %>
+<% else %>
+Group: <%= @note.group.name %>
+<% end %>
+<p>
+  <%=h @note.text[0,200] %>
+</p>
+
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

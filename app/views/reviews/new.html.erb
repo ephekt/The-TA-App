@@ -1,0 +1,46 @@
+<h1>Add a Review</h1>
+
+<% form_for(@review) do |f| %>
+  <%= f.error_messages %>  
+  <table class="new_review" cellspacing=0 cellshading=0>
+    <tr>
+      <td>
+        Select Quarter
+      </td>
+      <td>
+        <%= collection_select(:review, :course_id, @courses, :id, :title, :selected => @courses.last.id) %>        
+      </td>
+    </tr>
+    <tr class='even'>
+      <td>
+        Peer Reviewing
+      </td>
+      <td>
+        <%= collection_select(:review, :student_id, @students, :id, :name) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Peer Grade (0.00-10.00)
+      </td>
+      <td>
+        <%= f.text_field :grade, :style => 'width: 75px;' %>
+      </td>
+    </tr>
+    <tr class='even'>
+      <td>
+        Reviewer
+      </td>
+      <td>
+        <%= collection_select(:review, :reviewer_id, @students, :id, :name) %>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <%= f.label :review %><br />
+    <%= f.text_area :review, :style => 'width: 400px; height: 200px;' %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %> or <%= link_to 'Back', reviews_path %>
+  </p>
+<% end %>

@@ -1,0 +1,18 @@
+<fieldset>
+  <legend><%=h @group.name %> (<%= link_to 'Edit', edit_group_path(@group) %>)</legend>
+  Currently (<%= @group.active ? 'Active' : 'Inactive' %>)<br />
+</fieldset>  
+<fieldset>
+  <legend>Active Students</legend>
+  <% @group.active_students.each do |s| %>
+    <%= link_to s.name, s %><br />
+  <% end %>
+</fieldset>
+<% if @group.inactive_students.size > 0 %>
+<fieldset>
+  <legend>In-Active Students</legend>
+  <% @group.inactive_students.each do |s| %>
+    <%= link_to s.name, s %><br />
+  <% end %>
+</fieldset>
+<% end %>
